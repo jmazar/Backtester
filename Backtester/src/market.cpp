@@ -45,3 +45,7 @@ void Market::ReadInData(std::string in_fileName) {
 
     file.close();
 }
+
+std::vector<Security> const & Market::GetSecurities() {
+    return m_securities;
+}

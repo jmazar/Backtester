@@ -17,7 +17,7 @@ class Security {
             unsigned int    volume;
         } SecurityInfo;
         void AddInfo(SecurityInfo const & in_info);
-        std::vector<SecurityInfo> GetInfo(unsigned int in_beginDate, unsigned int in_endDate);
+        std::vector<SecurityInfo> GetInfo(unsigned int in_beginDate, unsigned int in_endDate) const;
     private:
         std::string m_name;
         std::vector<SecurityInfo> m_info;

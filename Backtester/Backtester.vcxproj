@@ -61,13 +61,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\investor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\market.cpp" />
     <ClCompile Include="src\security.cpp" />
+    <ClCompile Include="src\simulator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\investor.h" />
     <ClInclude Include="include\market.h" />
     <ClInclude Include="include\security.h" />
+    <ClInclude Include="include\simulator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

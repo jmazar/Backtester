@@ -1,8 +1,13 @@
-#include "market.h"
+#include "simulator.h"
 
 int main() {
-    Market stockMarket;
+    Simulator   simulation;
+    Investor    investor;
 
-    stockMarket.ReadInData("data/table.csv");
+    investor.SetMoney(100000);
+    simulation.AddInvestor(investor);
+    simulation.RunSimulation();
+
+    system("pause");
     return 0;
 }

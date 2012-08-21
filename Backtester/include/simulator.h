@@ -7,13 +7,12 @@
 class Simulator {
     public:
         Simulator();
-        virtual ~Simualator();
+        virtual ~Simulator();
+        void AddInvestor(Investor const & in_investor);
+        void RunSimulation();
     private:
         Market                  m_market;
         std::vector<Investor>   m_investors;
-        unsigned int            m_year;
-        unsigned int            m_month;
-        unsigned int            m_day;
 };
 
 #endif

@@ -2,6 +2,8 @@
 #define _INVESTOR_H
 
 #include <map>
+#include <vector>
+#include "security.h"
 
 class Investor {
     public:
@@ -9,13 +11,14 @@ class Investor {
         Investor(unsigned int in_money);
         virtual ~Investor();
         unsigned int GetCurrentMoney();
-        unsigned int SetMoney(unsigned int in_money);
-        void ExecuteStrategy();
+        void SetMoney(unsigned int in_money);
+        void ReportOut();
+        void ExecuteStrategy(std::vector<Security> const & in_securities, unsigned int in_date);
     private:
         typedef std::map<std::string, unsigned int>     OwnedSecuritiesMap;
-
         OwnedSecuritiesMap  m_ownedSecurities;
-        double              m_money;
+        double              m_startingMoney;
+        double              m_currentMoney;
 
 };
 #endif

@@ -18,12 +18,24 @@
     <ClCompile Include="src\market.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\investor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simulator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\security.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\market.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\investor.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\simulator.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

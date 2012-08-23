@@ -1,4 +1,4 @@
-#include "market.h"
+#include "../include/market.h"
 #include <fstream>
 #include <sstream>
 
@@ -10,7 +10,7 @@ Market::~Market() {
 
 void Market::ReadInData(std::string in_fileName) {
     std::ifstream file;
-    file.open(in_fileName);
+    file.open(in_fileName.c_str());
 
     Security                newSecurity;
     Security::SecurityInfo  newInfo;

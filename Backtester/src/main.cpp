@@ -1,4 +1,4 @@
-#include "simulator.h"
+#include "../include/simulator.h"
 
 int main() {
     Simulator   simulation;
@@ -8,6 +8,5 @@ int main() {
     simulation.AddInvestor(investor);
     simulation.RunSimulation();
 
-    system("pause");
     return 0;
 }

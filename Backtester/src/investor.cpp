@@ -1,4 +1,4 @@
-#include "investor.h"
+#include "../include/investor.h"
 #include <stdio.h>
 
 Investor::Investor() : 

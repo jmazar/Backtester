@@ -12,20 +12,20 @@ void Market::ReadInData(std::string in_fileName) {
     std::ifstream file;
     file.open(in_fileName.c_str());
 
-    Security                newSecurity;
-    Security::SecurityInfo  newInfo;
+    SecurityInfo  newInfo;
     std::string             line;
+	Date newDate;
     while(file.good()) {
         getline(file, line, ','); //Read date
         //Do some stuff to get rid of -
         std::stringstream date(line);
         std::string partofdate = "";
-        std::string finaldate = "";
-        for(int i = 0; i < 3; i++) {
-            getline(date, partofdate, '-');
-            finaldate += partofdate;
-        }
-        newInfo.date = atoi(finaldate.c_str());
+		getline(date, partofdate, '-');
+		newDate.year = atoi(partofdate.c_str());
+		getline(date, partofdate, '-');
+		newDate.month = atoi(partofdate.c_str());
+		getline(date, partofdate, '-');
+		newDate.day = atoi(partofdate.c_str());
 
         getline(file, line, ','); //Read open
         newInfo.open = atof(line.c_str());
@@ -38,14 +38,13 @@ void Market::ReadInData(std::string in_fileName) {
         newInfo.volume = atoi(line.c_str());
         getline(file, line, ','); //Read adj close
         newInfo.close = atof(line.c_str());
-        newSecurity.AddInfo(newInfo);
     }
 
-    m_securities.push_back(newSecurity);
+    m_securities[newDate].push_back(newInfo);
 
     file.close();
 }
 
-std::vector<Security> const & Market::GetSecurities() {
-    return m_securities;
+std::vector<Market::SecurityInfo> const & Market::GetSecuritiesAtDate(Date const & in_date) {
+    return m_securities[in_date];
 }

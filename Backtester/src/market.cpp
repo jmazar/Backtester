@@ -21,11 +21,11 @@ void Market::ReadInData(std::string in_fileName) {
         std::stringstream date(line);
         std::string partofdate = "";
 		getline(date, partofdate, '-');
-		newDate.year = atoi(partofdate.c_str());
+		newDate.SetYear(atoi(partofdate.c_str()));
 		getline(date, partofdate, '-');
-		newDate.month = atoi(partofdate.c_str());
+		newDate.SetMonth(atoi(partofdate.c_str()));
 		getline(date, partofdate, '-');
-		newDate.day = atoi(partofdate.c_str());
+		newDate.SetDay(atoi(partofdate.c_str()));
 
         getline(file, line, ','); //Read open
         newInfo.open = atof(line.c_str());

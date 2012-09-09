@@ -3,7 +3,6 @@
 
 #include <map>
 #include <vector>
-#include "security.h"
 
 class Investor {
     public:
@@ -13,10 +12,8 @@ class Investor {
         unsigned int GetCurrentMoney();
         void SetMoney(unsigned int in_money);
         void ReportOut();
-        void ExecuteStrategy(std::vector<Security> const & in_securities, unsigned int in_date);
+        void ExecuteStrategy();
     private:
-        typedef std::map<std::string, unsigned int>     OwnedSecuritiesMap;
-        OwnedSecuritiesMap  m_ownedSecurities;
         double              m_startingMoney;
         double              m_currentMoney;
 

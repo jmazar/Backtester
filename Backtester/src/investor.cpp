@@ -22,23 +22,7 @@ void Investor::SetMoney(unsigned int in_money) {
     m_currentMoney = in_money;
 }
 
-void Investor::ExecuteStrategy(std::vector<Security> const & in_securities, unsigned int in_date) {
-    std::vector<Security::SecurityInfo> info = in_securities[0].GetInfo(in_date, in_date);
-    double open = info[0].open;
-    unsigned int date = info[0].date;
-    if(in_date % 2 == 1) {
-        int canBuy = m_currentMoney / open;
-        m_currentMoney -= open * canBuy;
-        printf("%d: Bought %d at %f. $%f left.\n", date, canBuy, open, m_currentMoney);
-
-        m_ownedSecurities["butts"] = canBuy;
-    } 
-    else {
-        m_currentMoney += m_ownedSecurities["butts"] * open;
-        printf("%d: Sold %d for %f. $%f left.\n", date, m_ownedSecurities["butts"], open, m_currentMoney);
-        m_ownedSecurities["butts"] = 0;
-    }
-    m_currentMoney -= 10;
+void Investor::ExecuteStrategy() {
 }
 
 void Investor::ReportOut() {

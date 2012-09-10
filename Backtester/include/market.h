@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <set>
 #include "date.h"
 
 class Market {
@@ -21,7 +22,9 @@ class Market {
         virtual ~Market();
         void ReadInData(std::string in_fileName);
         std::vector<SecurityInfo> const & GetSecuritiesAtDate(Date const & in_date);
+		std::set<Date> const & GetDates();
     private:
-		std::map<Date, std::vector<SecurityInfo> > m_securities;
+		std::set<Date>								m_dates;
+		std::map<Date, std::vector<SecurityInfo> > 	m_securities;
 };
 #endif

@@ -40,6 +40,9 @@ void Market::ReadInData(std::string in_fileName) {
         newInfo.close = atof(line.c_str());
     }
 
+	if(m_dates.find(newDate) != m_dates.end()) {
+		m_dates.insert(newDate);
+	}
     m_securities[newDate].push_back(newInfo);
 
     file.close();
@@ -47,4 +50,8 @@ void Market::ReadInData(std::string in_fileName) {
 
 std::vector<Market::SecurityInfo> const & Market::GetSecuritiesAtDate(Date const & in_date) {
     return m_securities[in_date];
+}
+
+std::set<Date> const & Market::GetDates() {
+	return m_dates;
 }

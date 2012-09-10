@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include "market.h"
 
 class Investor {
     public:
@@ -12,7 +13,7 @@ class Investor {
         unsigned int GetCurrentMoney();
         void SetMoney(unsigned int in_money);
         void ReportOut();
-        void ExecuteStrategy();
+        void ExecuteStrategy(std::vector<Market::SecurityInfo> const & in_securities);
     private:
         double              m_startingMoney;
         double              m_currentMoney;

@@ -22,7 +22,7 @@ void Investor::SetMoney(unsigned int in_money) {
     m_currentMoney = in_money;
 }
 
-void Investor::ExecuteStrategy() {
+void Investor::ExecuteStrategy(std::vector<Market::SecurityInfo> const & in_securities) {
 }
 
 void Investor::ReportOut() {

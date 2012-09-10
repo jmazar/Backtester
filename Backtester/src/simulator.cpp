@@ -21,6 +21,7 @@ void Simulator::RunSimulation() {
 		std::vector<Investor>::iterator investorIter;
 		for(investorIter = m_investors.begin(); investorIter != m_investors.end(); investorIter++){
 			investorIter->ExecuteStrategy(securities);
+			investorIter->ReportOut();
 		}
 	}
 }

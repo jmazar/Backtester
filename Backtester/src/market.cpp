@@ -29,7 +29,7 @@ void Market::ReadInData(std::string in_fileName) {
 
         getline(file, line, ','); //Read open
         newInfo.open = atof(line.c_str());
-        getline(file, line, ','); //Read high
+		getline(file, line, ','); //Read high
         newInfo.high = atof(line.c_str());
         getline(file, line, ','); //Read low
         newInfo.low = atof(line.c_str());

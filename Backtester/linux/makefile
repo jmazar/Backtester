@@ -9,9 +9,6 @@ investor.o: ../include/investor.h ../src/investor.cpp
 market.o: ../include/market.h ../src/market.cpp
 	g++ -c ../src/market.cpp -o market.o
 
-security.o: ../include/security.h ../src/security.cpp
-	g++ -c ../src/security.cpp -o security.o
-
 simulator.o: ../include/simulator.h ../src/simulator.cpp
 	g++ -c ../src/simulator.cpp -o simulator.o
 

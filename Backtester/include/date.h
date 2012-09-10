@@ -10,7 +10,8 @@ class Date {
 				m_year(in_year),
 				m_month(in_month),
 				m_day(in_day) {}
-		inline bool operator<(Date const & in_date) {
+
+		inline bool operator<(Date const & in_date) const {
 			if(this->GetYear() != in_date.GetYear()) {
 				return this->GetYear() < in_date.GetYear();
 			}

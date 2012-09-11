@@ -1,7 +1,7 @@
 #include "../include/simulator.h"
 
 Simulator::Simulator() {
-    m_market.ReadInData("data/table.csv", 0);
+    m_market.ReadInData("../data/table.csv", 0);
 }
 
 Simulator::~Simulator() {

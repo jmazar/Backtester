@@ -1,4 +1,5 @@
 #include "../include/simulator.h"
+#include "../include/investor.h"
 
 int main() {
     Simulator   simulation;

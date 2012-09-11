@@ -22,9 +22,9 @@ class Date {
 		}
 
 		inline bool operator==(Date const & in_date) const {
-			return ((this->GetYear() && in_date.GetYear()) 
-			&& (this->GetMonth() && in_date.GetMonth())
-			&& (this->GetDay() && in_date.GetDay()));
+			return ((this->GetYear() == in_date.GetYear()) 
+			&& (this->GetMonth() == in_date.GetMonth())
+			&& (this->GetDay() == in_date.GetDay()));
 		}
 
 		unsigned int GetYear() const { return m_year; }

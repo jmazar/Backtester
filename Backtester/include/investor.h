@@ -4,6 +4,7 @@
 #include <map>
 #include <vector>
 #include "market.h"
+#include "security_info.h"
 
 class Investor {
     public:
@@ -13,7 +14,7 @@ class Investor {
         unsigned int GetCurrentMoney();
         void SetMoney(unsigned int in_money);
         void ReportOut();
-        void ExecuteStrategy(std::vector<Market::SecurityInfo> const & in_securities);
+        void ExecuteStrategy(std::vector<SecurityInfo> const & in_securities);
     private:
         double              m_startingMoney;
         double              m_currentMoney;

@@ -4,27 +4,20 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <set>
+#include <list>
 #include "date.h"
+#include "security_info.h"
 
 class Market {
     public:
-        typedef struct SecurityInfo {
-			std::string		name;
-            double          open;
-            double          close;
-            double          high;
-            double          low;
-            unsigned int    volume;
-        } SecurityInfo;
-
         Market();
         virtual ~Market();
-        void ReadInData(std::string in_fileName);
+        void ReadInData(std::string in_fileName, unsigned int in_id);
         std::vector<SecurityInfo> const & GetSecuritiesAtDate(Date const & in_date);
-		std::set<Date> const & GetDates();
+		std::list<Date> const & GetDates();
     private:
-		std::set<Date>								m_dates;
+		std::list<Date>								m_dates;
 		std::map<Date, std::vector<SecurityInfo> > 	m_securities;
+		std::map<unsigned int, std::string>			m_names;
 };
 #endif

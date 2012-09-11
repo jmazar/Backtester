@@ -10,6 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\date.h" />
+    <ClInclude Include="include\investor.h" />
+    <ClInclude Include="include\market.h" />
+    <ClInclude Include="include\security_info.h" />
+    <ClInclude Include="include\simulator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\investor.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\market.cpp" />
+    <ClCompile Include="src\simulator.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{279E6720-8D85-4FBB-A364-B41F51459AD3}</ProjectGuid>
     <RootNamespace>Backtester</RootNamespace>
@@ -60,19 +73,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\investor.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\market.cpp" />
-    <ClCompile Include="src\security.cpp" />
-    <ClCompile Include="src\simulator.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\investor.h" />
-    <ClInclude Include="include\market.h" />
-    <ClInclude Include="include\security.h" />
-    <ClInclude Include="include\simulator.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

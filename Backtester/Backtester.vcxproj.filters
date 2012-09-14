@@ -7,6 +7,12 @@
     <Filter Include="include">
       <UniqueIdentifier>{197f73bb-fd48-4843-ae50-ab3e550fdc5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{716c4cb2-a012-487f-833f-53df5faea85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\sqlite">
+      <UniqueIdentifier>{9f15c562-747a-4a5e-b8d6-d38986a4e93e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\date.h">
@@ -24,6 +30,12 @@
     <ClInclude Include="include\simulator.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="3rdparty\sqlite\sqlite3.h">
+      <Filter>3rdparty\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\sqlite\sqlite3ext.h">
+      <Filter>3rdparty\sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\investor.cpp">
@@ -37,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="src\simulator.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\sqlite\sqlite3.c">
+      <Filter>3rdparty\sqlite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

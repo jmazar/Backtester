@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="3rdparty\sqlite\sqlite3.h" />
+    <ClInclude Include="3rdparty\sqlite\sqlite3ext.h" />
     <ClInclude Include="include\date.h" />
     <ClInclude Include="include\investor.h" />
     <ClInclude Include="include\market.h" />
@@ -18,6 +20,7 @@
     <ClInclude Include="include\simulator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="3rdparty\sqlite\sqlite3.c" />
     <ClCompile Include="src\investor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\market.cpp" />

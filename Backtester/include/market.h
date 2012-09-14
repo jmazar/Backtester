@@ -7,6 +7,7 @@
 #include <list>
 #include "date.h"
 #include "security_info.h"
+#include "database.h"
 
 class Market {
     public:
@@ -19,5 +20,6 @@ class Market {
 		std::list<Date>								m_dates;
 		std::map<Date, std::vector<SecurityInfo> > 	m_securities;
 		std::map<unsigned int, std::string>			m_names;
+		Database									m_database;
 };
 #endif

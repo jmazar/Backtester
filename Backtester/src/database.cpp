@@ -22,7 +22,23 @@ int Database::ExecuteStatement(std::string const & in_statement) {
 	sqlite3_stmt * statement = NULL;
 
 	returnCode = sqlite3_prepare_v2(m_pDatabase, in_statement.c_str(), -1, &statement, 0);
-	if(returnCode != SQLITE_OK)
+	if(SQLITE_OK == returnCode)
+	{
+		int cols = sqlite3_column_count(statement);
+		while(true)
+		{
+			returnCode = sqlite3_step(statement);
+			if(SQLITE_ROW == returnCode)
+			{
+			}
+			else
+			{
+				break;
+			}
+		}
+
+	}
+	else
 	{
 		printf("Return code %d\n", returnCode);
 	}

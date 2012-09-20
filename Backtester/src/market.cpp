@@ -12,7 +12,6 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
     std::ifstream file;
     file.open(in_fileName.c_str());
 
-    SecurityInfo  			newInfo;
     std::string             line;
 	Date 					newDate;
 
@@ -22,6 +21,7 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 	}
 
     while(file.good()) {
+		std::string statement("INSERT INTO securities (open, high, low, volume, close) VALUES (");
 		//Set date
         getline(file, line, ','); //Read date
         //Do some stuff to get rid of -
@@ -37,24 +37,25 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 
 		//Set open
         getline(file, line, ','); //Read open
-        newInfo.open = atof(line.c_str());
+		statement += line + ",";
 		//Set high
 		getline(file, line, ','); //Read high
-        newInfo.high = atof(line.c_str());
+		statement += line + ",";
 		//Set low
         getline(file, line, ','); //Read low
-        newInfo.low = atof(line.c_str());
+		statement += line + ",";
 		//Eat close, we don't care about it
         getline(file, line, ','); //Read close
 		//Set volume
         getline(file, line, ','); //Read volume
-        newInfo.volume = atoi(line.c_str());
+		statement += line + ",";
 		//Set adj close
         getline(file, line, ','); //Read adj close
-        newInfo.close = atof(line.c_str());
+		statement += line + ");";
 
 		m_dates.push_back(newDate);
 		m_securities[newDate].push_back(newInfo);
+		m_database.ExecuteStatement(statement);
     }
 	
 	m_dates.sort();

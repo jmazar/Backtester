@@ -3,12 +3,13 @@
 
 #include "../3rdparty/sqlite/sqlite3.h"
 #include <string>
+#include <vector>
 
 class Database {
 	public:
 		Database();
 		virtual ~Database();
-		int ExecuteStatement(std::string const & in_statement);
+		std::vector<std::vector<std::string> > ExecuteStatement(std::string const & in_statement);
 	private:
 		Database(Database const &);
 		Database const & operator=(Database const &);

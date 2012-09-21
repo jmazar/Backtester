@@ -13,27 +13,23 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
     file.open(in_fileName.c_str());
 
     std::string             line;
-	Date 					newDate;
 
 	if(file.good()) {
 		getline(file, line, ',');
-		m_names[in_id] = line;
+		// Add to security name database
+		std::string statement("INSERT INTO security_names (name) VALUES ( '");
+		statement += line;
+		statement += "' );";
+		m_database.ExecuteStatement(statement);
 	}
 
     while(file.good()) {
-		std::string statement("INSERT INTO securities (open, high, low, volume, close) VALUES (");
+		std::string statement("INSERT INTO securities (date, open, high, low, volume, close) VALUES (");
 		//Set date
         getline(file, line, ','); //Read date
+		statement += line + ",";
         //Do some stuff to get rid of -
-        std::stringstream date(line);
-        std::string partofdate = "";
-		getline(date, partofdate, '-');
-		newDate.SetYear(atoi(partofdate.c_str()));
-		getline(date, partofdate, '-');
-		newDate.SetMonth(atoi(partofdate.c_str()));
-		getline(date, partofdate, '-');
-		newDate.SetDay(atoi(partofdate.c_str()));
-		newInfo.date = newDate;
+		Date newDate(line);
 
 		//Set open
         getline(file, line, ','); //Read open
@@ -46,6 +42,7 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 		statement += line + ",";
 		//Eat close, we don't care about it
         getline(file, line, ','); //Read close
+
 		//Set volume
         getline(file, line, ','); //Read volume
 		statement += line + ",";
@@ -54,7 +51,6 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 		statement += line + ");";
 
 		m_dates.push_back(newDate);
-		m_securities[newDate].push_back(newInfo);
 		m_database.ExecuteStatement(statement);
     }
 	
@@ -62,10 +58,6 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 	m_dates.unique();
 
     file.close();
-}
-
-std::vector<SecurityInfo> const & Market::GetSecuritiesAtDate(Date const & in_date) {
-    return m_securities[in_date];
 }
 
 std::list<Date> const & Market::GetDates() {

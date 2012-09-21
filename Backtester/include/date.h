@@ -1,6 +1,8 @@
 #ifndef _DATE_H
 #define _DATE_H
 
+#include <sstream>
+
 class Date {
 	public:
 		Date() : m_year(0), m_month(0), m_day(0) {}
@@ -10,6 +12,17 @@ class Date {
 				m_year(in_year),
 				m_month(in_month),
 				m_day(in_day) {}
+
+		Date( std::string const & in_date ) {
+			std::stringstream date(in_date);
+			std::string partofdate = "";
+			getline(date, partofdate, '-');
+			this->SetYear(atoi(partofdate.c_str()));
+			getline(date, partofdate, '-');
+			this->SetMonth(atoi(partofdate.c_str()));
+			getline(date, partofdate, '-');
+			this->SetDay(atoi(partofdate.c_str()));
+		}
 
 		inline bool operator<(Date const & in_date) const {
 			if(this->GetYear() != in_date.GetYear()) {

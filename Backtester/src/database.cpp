@@ -40,6 +40,7 @@ int Database::ExecuteStatement(std::string const & in_statement) {
 	}
 	else
 	{
+		printf("%s\n", in_statement.c_str());
 		printf("Return code %d\n", returnCode);
 	}
 

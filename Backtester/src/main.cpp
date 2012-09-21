@@ -7,6 +7,6 @@ int main() {
 
     investor.SetMoney(100000);
     simulation.AddInvestor(investor);
-    //simulation.RunSimulation();
+    simulation.RunSimulation();
     return 0;
 }

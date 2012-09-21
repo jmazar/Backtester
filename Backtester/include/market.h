@@ -15,6 +15,7 @@ class Market {
         virtual ~Market();
         void ReadInData(std::string in_fileName, unsigned int in_id);
 		std::list<Date> const & GetDates();
+		std::vector<SecurityInfo> GetSecurityInfoAtDate(Date const & in_date);
     private:
 		std::list<Date>								m_dates;
 		Database									m_database;

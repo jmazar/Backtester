@@ -68,10 +68,21 @@ std::vector<SecurityInfo> Market::GetSecurityInfoAtDate(Date const & in_date) {
 	statement += date;
 	statement += ";";
 	printf("%s\n", statement.c_str());
-	m_database.ExecuteStatement(statement);
-	std::vector<SecurityInfo> info;
+	std::vector< std::vector<std::string> > results = m_database.ExecuteStatement(statement);
+	std::vector<SecurityInfo> infoList;
+	std::vector< std::vector<std::string> >::const_iterator rowIter;
+	for(rowIter = results.begin(); rowIter != results.end(); rowIter++) {
+		std::vector<std::string>::const_iterator columnIter = rowIter->begin();
+		SecurityInfo info;
+		columnIter++;
+		info.open = atoi(columnIter++->c_str());
+		info.close = atoi(columnIter++->c_str());
+		info.high = atoi(columnIter++->c_str());
+		info.low = atoi(columnIter++->c_str());
+		info.volume = atoi(columnIter++->c_str());
+	}
 	//todo fill info
-	return info;
+	return infoList;
 }
 
 std::list<Date> const & Market::GetDates() {

@@ -5,6 +5,7 @@ clean:
 
 backtester: main.o investor.o market.o simulator.o database.o sqlite.o
 	g++ bin/sqlite.o bin/main.o bin/database.o bin/investor.o bin/market.o bin/simulator.o -o bin/backtester
+	rm securities.db
 
 investor.o: ../include/market.h ../include/security_info.h ../include/investor.h ../src/investor.cpp
 	g++ -c ../src/investor.cpp -o bin/investor.o

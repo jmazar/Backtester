@@ -11,6 +11,8 @@ struct SecurityInfo {
 	double 			close;
 	double			high;
 	double			low;
+	double			macd;
+	double			stochasticOscillator;
 	unsigned int	volume;
 };
 

@@ -28,28 +28,24 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 
     while(file.good()) {
 		SecurityInfo newInfo;
-		std::string statement("INSERT INTO securities (date, open, high, low, volume, close, macd, stochastic) VALUES ('");
 
 		//Set date
         getline(file, line, ','); //Read date
-		statement += line + "',";
         //Do some stuff to get rid of -
 		Date newDate(line);
+		newInfo.date = newDate;
 
 		//Set open
         getline(file, line, ','); //Read open
 		newInfo.open = atoi(line.c_str());
-		statement += line + ",";
 		
 		//Set high
 		getline(file, line, ','); //Read high
 		newInfo.high = atoi(line.c_str());
-		statement += line + ",";
 
 		//Set low
         getline(file, line, ','); //Read low
 		newInfo.low = atoi(line.c_str());
-		statement += line + ",";
 		
 		//Eat close, we don't care about it
         getline(file, line, ','); //Read close
@@ -57,28 +53,21 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 		//Set volume
         getline(file, line, ','); //Read volume
 		newInfo.volume = atoi(line.c_str());
-		statement += line + ",";
 
 		//Set adj close
         getline(file, line, ','); //Read adj close
-		statement += line + ",";
 		newInfo.close = atoi(line.c_str());
 
 		trailingMonth.push_front(newInfo);
 		if(trailingMonth.size() > 31)
 			trailingMonth.pop_back();
 
-		char numberConverter[20];
-		sprintf(numberConverter, "%f", CalculateMACD(trailingMonth));
-		statement += numberConverter;
-		statement += ",";
+		newInfo.macd = _CalculateMACD(trailingMonth);
 
-		sprintf(numberConverter, "%f", CalculateStochasticOscillator(trailingMonth));
-		statement += numberConverter;
+		newInfo.stochasticOscillator = _CalculateStochasticOscillator(trailingMonth);
 
-		statement += ");";
 		m_dates.push_back(newDate);
-		m_database.ExecuteStatement(statement);
+		_InsertSecurityInfoIntoDB(newInfo);
     }
 	
 	m_dates.sort();
@@ -116,10 +105,49 @@ std::list<Date> const & Market::GetDates() {
 	return m_dates;
 }
 
-double Market::CalculateMACD(std::list<SecurityInfo> const & in_securities) {
+void Market::_InsertSecurityInfoIntoDB(SecurityInfo const & in_info) {
+	char numberConverter[20];
+	std::string statement("INSERT INTO securities (date, open, high, low, volume, close, macd, stochastic) VALUES ('");
+
+	sprintf(numberConverter, "%d-%02d-%d", in_info.date.GetYear(), in_info.date.GetMonth(), in_info.date.GetDay());
+	statement += numberConverter;
+	statement += "',";
+
+	sprintf(numberConverter, "%f", in_info.open);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%f", in_info.high);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%f", in_info.low);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%d", in_info.volume);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%f", in_info.close);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%f", in_info.macd);
+	statement += numberConverter;
+	statement += ",";
+
+	sprintf(numberConverter, "%f", in_info.stochasticOscillator);
+	statement += numberConverter;
+	statement += ");";
+
+	m_database.ExecuteStatement(statement);
+}
+
+double Market::_CalculateMACD(std::list<SecurityInfo> const & in_securities) {
 	return 10;
 }
 
-double Market::CalculateStochasticOscillator(std::list<SecurityInfo> const & in_securities) {
+double Market::_CalculateStochasticOscillator(std::list<SecurityInfo> const & in_securities) {
 	return 10;
 }

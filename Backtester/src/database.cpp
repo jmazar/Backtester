@@ -9,7 +9,7 @@ Database::Database() {
 
 	ExecuteStatement("CREATE TABLE IF NOT EXISTS security_names ( id INTEGER PRIMARY KEY, name TEXT);");
 
-	ExecuteStatement("CREATE TABLE IF NOT EXISTS securities ( id INTEGER PRIMARY KEY, name_id INTEGER, date TEXT, open REAL, close REAL, high REAL, low REAL, volume INTEGER);");
+	ExecuteStatement("CREATE TABLE IF NOT EXISTS securities ( id INTEGER PRIMARY KEY, name_id INTEGER, date TEXT, open REAL, close REAL, high REAL, low REAL, volume INTEGER, macd REAL, stochastic REALL);");
 }
 
 Database::~Database() {

@@ -19,5 +19,8 @@ class Market {
     private:
 		std::list<Date>								m_dates;
 		Database									m_database;
+
+		double CalculateMACD(std::list<SecurityInfo> const & in_securities);
+		double CalculateStochasticOscillator(std::list<SecurityInfo> const & in_securities);
 };
 #endif

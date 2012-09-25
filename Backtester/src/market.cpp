@@ -24,8 +24,12 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 		m_database.ExecuteStatement(statement);
 	}
 
+	std::list<SecurityInfo> trailingMonth;
+
     while(file.good()) {
-		std::string statement("INSERT INTO securities (date, open, high, low, volume, close) VALUES ('");
+		SecurityInfo newInfo;
+		std::string statement("INSERT INTO securities (date, open, high, low, volume, close, macd, stochastic) VALUES ('");
+
 		//Set date
         getline(file, line, ','); //Read date
 		statement += line + "',";
@@ -34,23 +38,45 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 
 		//Set open
         getline(file, line, ','); //Read open
+		newInfo.open = atoi(line.c_str());
 		statement += line + ",";
+		
 		//Set high
 		getline(file, line, ','); //Read high
+		newInfo.high = atoi(line.c_str());
 		statement += line + ",";
+
 		//Set low
         getline(file, line, ','); //Read low
+		newInfo.low = atoi(line.c_str());
 		statement += line + ",";
+		
 		//Eat close, we don't care about it
         getline(file, line, ','); //Read close
 
 		//Set volume
         getline(file, line, ','); //Read volume
+		newInfo.volume = atoi(line.c_str());
 		statement += line + ",";
+
 		//Set adj close
         getline(file, line, ','); //Read adj close
-		statement += line + ");";
+		statement += line + ",";
+		newInfo.close = atoi(line.c_str());
 
+		trailingMonth.push_front(newInfo);
+		if(trailingMonth.size() > 31)
+			trailingMonth.pop_back();
+
+		char numberConverter[20];
+		sprintf(numberConverter, "%f", CalculateMACD(trailingMonth));
+		statement += numberConverter;
+		statement += ",";
+
+		sprintf(numberConverter, "%f", CalculateStochasticOscillator(trailingMonth));
+		statement += numberConverter;
+
+		statement += ");";
 		m_dates.push_back(newDate);
 		m_database.ExecuteStatement(statement);
     }
@@ -60,6 +86,7 @@ void Market::ReadInData(std::string in_fileName, unsigned int in_id) {
 
     file.close();
 }
+
 std::vector<SecurityInfo> Market::GetSecurityInfoAtDate(Date const & in_date) {
 	std::string statement("SELECT date, open, high, low, close, volume FROM securities WHERE date='");
 	char date[20];
@@ -87,4 +114,12 @@ std::vector<SecurityInfo> Market::GetSecurityInfoAtDate(Date const & in_date) {
 
 std::list<Date> const & Market::GetDates() {
 	return m_dates;
+}
+
+double Market::CalculateMACD(std::list<SecurityInfo> const & in_securities) {
+	return 10;
+}
+
+double Market::CalculateStochasticOscillator(std::list<SecurityInfo> const & in_securities) {
+	return 10;
 }

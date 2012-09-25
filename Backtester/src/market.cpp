@@ -67,24 +67,17 @@ std::vector<SecurityInfo> Market::GetSecurityInfoAtDate(Date const & in_date) {
 
 	statement += date;
 	statement += "';";
-	printf("%s\n", statement.c_str());
 	std::vector< std::vector<std::string> > results = m_database.ExecuteStatement(statement);
 	std::vector<SecurityInfo> infoList;
 	std::vector< std::vector<std::string> >::const_iterator rowIter;
 	for(rowIter = results.begin(); rowIter != results.end(); rowIter++) {
 		std::vector<std::string>::const_iterator columnIter = rowIter->begin();
 		SecurityInfo info;
-		printf("%s\n", columnIter->c_str());
 		columnIter++;
-		printf("%s\n", columnIter->c_str());
 		info.open = atoi(columnIter++->c_str());
-		printf("%s\n", columnIter->c_str());
 		info.close = atoi(columnIter++->c_str());
-		printf("%s\n", columnIter->c_str());
 		info.high = atoi(columnIter++->c_str());
-		printf("%s\n", columnIter->c_str());
 		info.low = atoi(columnIter++->c_str());
-		printf("%s\n", columnIter->c_str());
 		info.volume = atoi(columnIter++->c_str());
 		infoList.push_back(info);
 	}

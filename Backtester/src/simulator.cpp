@@ -12,7 +12,7 @@ void Simulator::AddInvestor(Investor const & in_investor) {
 }
 
 void Simulator::RunSimulation() {
-	std::list<Date> dates = m_market.GetDates();
+	std::list<Date> dates = m_market.GetAvailableDates();
 	
 	std::vector<SecurityInfo> info = m_market.GetSecurityInfoAtDate(dates.front());
 	for(std::vector<SecurityInfo>::const_iterator iter = info.begin(); iter != info.end(); iter++){

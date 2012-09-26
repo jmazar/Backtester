@@ -1,7 +1,7 @@
 #ifndef _SIMULATOR_H
 #define _SIMULATOR_H
 
-#include "market.h"
+#include "dbmarket.h"
 #include "investor.h"
 
 class Simulator {
@@ -11,7 +11,7 @@ class Simulator {
         void AddInvestor(Investor const & in_investor);
         void RunSimulation();
     private:
-        Market                  m_market;
+        DBMarket                m_market;
         std::vector<Investor>   m_investors;
 };
 
